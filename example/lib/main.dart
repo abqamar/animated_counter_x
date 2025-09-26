@@ -29,12 +29,12 @@ class CounterExampleScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Increment example
             AnimatedCounterX(
               start: 0,
               end: 100,
               duration: const Duration(seconds: 5),
               style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-              increment: true,
               prefix: "\$",
               onComplete: () {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -43,12 +43,13 @@ class CounterExampleScreen extends StatelessWidget {
               },
             ),
             const SizedBox(height: 50),
+
+            // Decrement example
             AnimatedCounterX(
               start: 100,
-              end: 0,
+              end: 1,
               duration: const Duration(seconds: 4),
               style: const TextStyle(fontSize: 40, color: Colors.red),
-              increment: false,
               suffix: "%",
               onComplete: () {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -56,7 +57,10 @@ class CounterExampleScreen extends StatelessWidget {
                 );
               },
             ),
+
             const SizedBox(height: 50),
+
+            // Double with prefix and suffix
             AnimatedCounterX(
               start: 0.0,
               end: 99.99,

@@ -36,3 +36,17 @@ AnimatedCounterX(
   },
 )
 ```
+
+### Decrement from 100 → 1 with suffix
+```dart
+AnimatedCounterX(
+  start: 100,
+  end: 1,
+  duration: Duration(seconds: 5),
+  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.red),
+  suffix: "%",
+  onComplete: () {
+    print('Decrement complete!');
+  },
+)
+```

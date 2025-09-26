@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// A widget that animates a number (int or double) from [start] to [end] value.
 ///
-/// Supports increment (count up) and decrement (count down) mode.
+/// Supports counting up or down automatically depending on start/end.
 /// Provides an [onComplete] callback when the animation finishes.
 /// Optional [prefix] and [suffix] can be added to the displayed value.
 class AnimatedCounterX extends StatefulWidget {
@@ -21,9 +21,6 @@ class AnimatedCounterX extends StatefulWidget {
   /// Decimal places for double values
   final int decimalPlaces;
 
-  /// If true, counts up; if false, counts down
-  final bool increment;
-
   /// Callback executed when the animation completes
   final VoidCallback? onComplete;
 
@@ -40,7 +37,6 @@ class AnimatedCounterX extends StatefulWidget {
     this.duration = const Duration(seconds: 2),
     this.style,
     this.decimalPlaces = 0,
-    this.increment = true,
     this.onComplete,
     this.prefix,
     this.suffix,
@@ -99,9 +95,7 @@ class _AnimatedCounterXState extends State<AnimatedCounterX>
     return AnimatedBuilder(
       animation: _animation,
       builder: (context, child) {
-        num value = widget.increment
-            ? _animation.value
-            : widget.start - (_animation.value - widget.start);
+        num value = _animation.value;
 
         String displayValue;
         if (widget.end is int && widget.start is int) {
@@ -110,12 +104,8 @@ class _AnimatedCounterXState extends State<AnimatedCounterX>
           displayValue = value.toStringAsFixed(widget.decimalPlaces);
         }
 
-        if (widget.prefix != null) {
-          displayValue = widget.prefix! + displayValue;
-        }
-        if (widget.suffix != null) {
-          displayValue = displayValue + widget.suffix!;
-        }
+        if (widget.prefix != null) displayValue = widget.prefix! + displayValue;
+        if (widget.suffix != null) displayValue = displayValue + widget.suffix!;
 
         return Text(
           displayValue,
