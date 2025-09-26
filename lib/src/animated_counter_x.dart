@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 /// A widget that animates a number (int or double) from [start] to [end] value.
 ///
 /// Supports increment (count up) and decrement (count down) mode.
+/// Provides an [onComplete] callback when the animation finishes.
+/// Optional [prefix] and [suffix] can be added to the displayed value.
 class AnimatedCounterX extends StatefulWidget {
   /// Start value of the counter
   final num start;
@@ -22,6 +24,15 @@ class AnimatedCounterX extends StatefulWidget {
   /// If true, counts up; if false, counts down
   final bool increment;
 
+  /// Callback executed when the animation completes
+  final VoidCallback? onComplete;
+
+  /// Optional text before the number (e.g., "$")
+  final String? prefix;
+
+  /// Optional text after the number (e.g., "%")
+  final String? suffix;
+
   const AnimatedCounterX({
     Key? key,
     this.start = 0,
@@ -30,6 +41,9 @@ class AnimatedCounterX extends StatefulWidget {
     this.style,
     this.decimalPlaces = 0,
     this.increment = true,
+    this.onComplete,
+    this.prefix,
+    this.suffix,
   }) : super(key: key);
 
   @override
@@ -51,6 +65,12 @@ class _AnimatedCounterXState extends State<AnimatedCounterX>
     );
 
     _animateCounter();
+
+    _controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed && widget.onComplete != null) {
+        widget.onComplete!();
+      }
+    });
   }
 
   void _animateCounter() {
@@ -83,17 +103,24 @@ class _AnimatedCounterXState extends State<AnimatedCounterX>
             ? _animation.value
             : widget.start - (_animation.value - widget.start);
 
+        String displayValue;
         if (widget.end is int && widget.start is int) {
-          return Text(
-            value.toInt().toString(),
-            style: widget.style,
-          );
+          displayValue = value.toInt().toString();
         } else {
-          return Text(
-            value.toStringAsFixed(widget.decimalPlaces),
-            style: widget.style,
-          );
+          displayValue = value.toStringAsFixed(widget.decimalPlaces);
         }
+
+        if (widget.prefix != null) {
+          displayValue = widget.prefix! + displayValue;
+        }
+        if (widget.suffix != null) {
+          displayValue = displayValue + widget.suffix!;
+        }
+
+        return Text(
+          displayValue,
+          style: widget.style,
+        );
       },
     );
   }

@@ -9,14 +9,30 @@ A Flutter widget that animates numbers (integers or doubles) from a start value 
 - Custom animation duration.
 - Optional text styling.
 - Decimal precision for doubles.
+- `onComplete` callback when the counter finishes.
+- Optional `prefix` and `suffix` text.
 
 ## Installation
 Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  animated_counter_x:
-    git:
-      url: https://github.com/abqamar/animated_counter_x.git
+  animated_counter_x: ^0.0.1
+```
 
+## Usage
 
+### Increment from 1 → 100 with prefix
+```dart
+AnimatedCounterX(
+  start: 1,
+  end: 100,
+  duration: Duration(seconds: 5),
+  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+  increment: true,
+  prefix: "\$",
+  onComplete: () {
+    print('Increment finished!');
+  },
+)
+```

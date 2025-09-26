@@ -12,3 +12,6 @@
 - Increment (count up) and decrement (count down) mode.
 - Supports both int and double.
 - Custom duration, text style, and decimal precision.
+- `onComplete` callback triggered after animation finishes.
+- Optional `prefix` and `suffix` text for counters.
+
