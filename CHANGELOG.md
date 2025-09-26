@@ -1,3 +1,10 @@
-## 0.0.1
+## [0.0.1] - 2025-09-27
+### Added
+- Initial release of `AnimatedCounterX`.
+- Supports start and end values.
+- Increment (count up) and decrement (count down) mode.
+- Supports both int and double.
+- Custom duration, text style, and decimal precision.
+- `onComplete` callback triggered after animation finishes.
+- Optional `prefix` and `suffix` text for counters.
 
-* TODO: Describe initial release.
