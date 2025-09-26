@@ -1,0 +1,14 @@
+
+---
+
+## **6. CHANGELOG.md**
+```markdown
+# Changelog
+
+## [0.1.0] - 2025-09-27
+### Added
+- Initial release of `AnimatedCounterX`.
+- Supports start and end values.
+- Increment (count up) and decrement (count down) mode.
+- Supports both int and double.
+- Custom duration, text style, and decimal precision.
