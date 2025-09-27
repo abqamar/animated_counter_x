@@ -50,3 +50,9 @@ AnimatedCounterX(
   },
 )
 ```
+
+<table>
+<td>
+<img src="https://raw.githubusercontent.com/abqamar/animated_counter_x/refs/heads/main/screenshot/animated_counter_x.gif", alt="", height="1280px", width="720px"/>
+</td>
+</table>
